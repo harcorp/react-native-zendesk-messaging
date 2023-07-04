@@ -1,11 +1,11 @@
-# @robbywh/react-native-zendesk-messaging
+# @harcorp/react-native-zendesk-messaging
 
 Zendesk Messaging for React Native
 
 ## Installation
 
 ```sh
-yarn add @robbywh/react-native-zendesk-messaging
+yarn add @harcorp/react-native-zendesk-messaging
 ```
 
 For the Android platform, don't forget to add this script inside `android/build.gradle`
@@ -28,7 +28,7 @@ import Config from 'react-native-config';
 import {
   initialize,
   showMessaging,
-} from '@robbywh/react-native-zendesk-messaging';
+} from '@harcorp/react-native-zendesk-messaging';
 const App = () => {
   React.useEffect(() => {
     initialize(
