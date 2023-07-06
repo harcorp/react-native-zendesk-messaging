@@ -46,9 +46,9 @@
   "author": "David Rodriguez <chesternxp@gmail.com> (https://github.com/harcorp)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/RobbyWH/react-native-zendesk-messaging/issues"
+    "url": "https://github.com/harcorp/react-native-zendesk-messaging/issues"
   },
-  "homepage": "https://github.com/RobbyWH/react-native-zendesk-messaging#readme",
+  "homepage": "https://github.com/harcorp/react-native-zendesk-messaging#readme",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
