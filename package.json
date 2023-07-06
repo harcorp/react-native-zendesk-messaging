@@ -1,6 +1,6 @@
 {
   "name": "@harcorp/react-native-zendesk-messaging",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "description": "React Native Zendesk Messaging",
   "main": "lib/commonjs/index",
