@@ -73,6 +73,9 @@ PODS:
     - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
   - glog (0.3.5)
+  - harcorp-react-native-zendesk-messaging (1.0.2):
+    - React-Core
+    - ZendeskSDKMessaging
   - hermes-engine (0.71.7):
     - hermes-engine/Pre-built (= 0.71.7)
   - hermes-engine/Pre-built (0.71.7)
@@ -417,38 +420,35 @@ PODS:
     - React-jsi (= 0.71.7)
     - React-logger (= 0.71.7)
     - React-perflogger (= 0.71.7)
-  - robbywh-react-native-zendesk-messaging (1.0.5):
-    - React-Core
-    - ZendeskSDKMessaging
   - SocketRocket (0.6.0)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
-  - Zendesk (1.10.0):
-    - ZendeskSDKConversationKit (~> 1.8.0)
-    - ZendeskSDKCoreUtilities (~> 1.2.0)
-  - ZendeskSDKConversationKit (1.8.0):
-    - ZendeskSDKCoreUtilities (~> 1.2.0)
-    - ZendeskSDKFayeClient (~> 1.3.0)
-    - ZendeskSDKHTTPClient (~> 0.11.0)
-    - ZendeskSDKStorage (~> 0.6.0)
-  - ZendeskSDKCoreUtilities (1.2.0)
-  - ZendeskSDKFayeClient (1.3.0):
-    - ZendeskSDKLogger (~> 0.6.0)
-    - ZendeskSDKSocketClient (~> 1.3.0)
-  - ZendeskSDKHTTPClient (0.11.0):
-    - ZendeskSDKLogger (~> 0.6.0)
-  - ZendeskSDKLogger (0.6.0)
-  - ZendeskSDKMessaging (2.10.0):
-    - Zendesk (~> 1.10.0)
-    - ZendeskSDKConversationKit (~> 1.8.0)
-    - ZendeskSDKCoreUtilities (~> 1.2.0)
-    - ZendeskSDKUIComponents (~> 2.5.0)
-  - ZendeskSDKSocketClient (1.3.0):
-    - ZendeskSDKLogger (~> 0.6.0)
-  - ZendeskSDKStorage (0.6.0):
-    - ZendeskSDKLogger (~> 0.6.0)
-  - ZendeskSDKUIComponents (2.5.0)
+  - Zendesk (1.12.0):
+    - ZendeskSDKConversationKit (~> 1.9.0)
+    - ZendeskSDKCoreUtilities (~> 1.3.0)
+  - ZendeskSDKConversationKit (1.9.0):
+    - ZendeskSDKCoreUtilities (~> 1.3.0)
+    - ZendeskSDKFayeClient (~> 1.4.0)
+    - ZendeskSDKHTTPClient (~> 0.12.0)
+    - ZendeskSDKStorage (~> 0.7.0)
+  - ZendeskSDKCoreUtilities (1.3.0)
+  - ZendeskSDKFayeClient (1.4.0):
+    - ZendeskSDKLogger (~> 0.7.0)
+    - ZendeskSDKSocketClient (~> 1.4.0)
+  - ZendeskSDKHTTPClient (0.12.0):
+    - ZendeskSDKLogger (~> 0.7.0)
+  - ZendeskSDKLogger (0.7.0)
+  - ZendeskSDKMessaging (2.12.0):
+    - Zendesk (~> 1.12.0)
+    - ZendeskSDKConversationKit (~> 1.9.0)
+    - ZendeskSDKCoreUtilities (~> 1.3.0)
+    - ZendeskSDKUIComponents (~> 2.7.0)
+  - ZendeskSDKSocketClient (1.4.0):
+    - ZendeskSDKLogger (~> 0.7.0)
+  - ZendeskSDKStorage (0.7.0):
+    - ZendeskSDKLogger (~> 0.7.0)
+  - ZendeskSDKUIComponents (2.7.0)
 
 DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
@@ -477,6 +477,7 @@ DEPENDENCIES:
   - FlipperKit/FlipperKitUserDefaultsPlugin (= 0.125.0)
   - FlipperKit/SKIOSNetworkPlugin (= 0.125.0)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - harcorp-react-native-zendesk-messaging (from `../..`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
   - libevent (~> 2.1.12)
   - OpenSSL-Universal (= 1.1.1100)
@@ -510,7 +511,6 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
-  - robbywh-react-native-zendesk-messaging (from `../..`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -552,6 +552,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/React/FBReactNativeSpec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  harcorp-react-native-zendesk-messaging:
+    :path: "../.."
   hermes-engine:
     :podspec: "../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec"
   RCT-Folly:
@@ -610,8 +612,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
-  robbywh-react-native-zendesk-messaging:
-    :path: "../.."
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -632,6 +632,7 @@ SPEC CHECKSUMS:
   FlipperKit: cbdee19bdd4e7f05472a66ce290f1b729ba3cb86
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
+  harcorp-react-native-zendesk-messaging: 1edb3e38cf62842350db38a4b497c6c17cbf7316
   hermes-engine: 4438d2b8bf8bebaba1b1ac0451160bab59e491f8
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
@@ -663,21 +664,20 @@ SPEC CHECKSUMS:
   React-RCTVibration: 08f132cad9896458776f37c112e71d60aef1c6ae
   React-runtimeexecutor: c5c89f8f543842dd864b63ded1b0bbb9c9445328
   ReactCommon: dbfbe2f7f3c5ce4ce44f43f2fd0d5950d1eb67c5
-  robbywh-react-native-zendesk-messaging: 06cee745fef34e662f4bc405cc1675bb26d5f256
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: d56980c8914db0b51692f55533409e844b66133c
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
-  Zendesk: 2fcbda4585a2f98ddd7bb77e95b79fcafa369091
-  ZendeskSDKConversationKit: 2360456d7b7d181e9bfca97c86cf9d0726274984
-  ZendeskSDKCoreUtilities: 7b6e55b31f6ffec8ff1b2a84797ebb447c623b2f
-  ZendeskSDKFayeClient: 169812e13a1f3d175b38449b37a5e23b19fd3908
-  ZendeskSDKHTTPClient: 81ccf190c1221ff7e4980ddf719711c4ce5baffb
-  ZendeskSDKLogger: aee4388c6c6fc341ec57bbb87479768130b796da
-  ZendeskSDKMessaging: c6005df10bf1d87caefe2f38c013def84f2bf680
-  ZendeskSDKSocketClient: 53b9481906f38b5d35833535260cd872f5f28a27
-  ZendeskSDKStorage: cc4fcbfd50544d8fe26d5cfdc63f5c6455152e5e
-  ZendeskSDKUIComponents: f000e5f97a975e94ad953ab77f2e1d021b5c24a0
+  Zendesk: 0505ba8fc49ea3029329cb466568ea6ada4bef62
+  ZendeskSDKConversationKit: 6d8ab0e04955144a4eeb1e59ff3e8bc01f7fafbd
+  ZendeskSDKCoreUtilities: e53e321eeccf21f6ee21d3d985a923b85ae6dffe
+  ZendeskSDKFayeClient: 5de94ef6a7ac09fa0ec6ee51ba843c47d2e9bec5
+  ZendeskSDKHTTPClient: f9193f3b2c7003960894f666f2b2cbbd1d10fcd5
+  ZendeskSDKLogger: 30e5c41600d0cec61727bbe7c096264d18ada50d
+  ZendeskSDKMessaging: e9a29dd8d8856f64e3a18f9e079a8d7520b69aff
+  ZendeskSDKSocketClient: ca7f145a32a4229acdbfd1abe1205b950c51972a
+  ZendeskSDKStorage: cf73fa8079c768d449a951484bd69c0880192635
+  ZendeskSDKUIComponents: 48a48b6ea89feeca2704c1657e32eca2487acf06
 
 PODFILE CHECKSUM: 262e0b6c7989d59a7c999fb0e00aa3fb1e4522d3
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.11.3
