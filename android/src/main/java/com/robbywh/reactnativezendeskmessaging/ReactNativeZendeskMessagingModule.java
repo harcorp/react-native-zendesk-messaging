@@ -63,6 +63,8 @@ public class ReactNativeZendeskMessagingModule extends ReactContextBaseJavaModul
         },
         error -> promise.reject(error),
         new DefaultMessagingFactory());
+    } else {
+      promise.resolve("success");
     }
   }
 
