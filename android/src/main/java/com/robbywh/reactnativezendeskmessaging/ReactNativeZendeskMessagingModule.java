@@ -9,6 +9,8 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 
+import java.util.Objects;
+
 import kotlin.Unit;
 import zendesk.android.FailureCallback;
 import zendesk.android.SuccessCallback;
@@ -70,7 +72,7 @@ public class ReactNativeZendeskMessagingModule extends ReactContextBaseJavaModul
 
   @ReactMethod
   public void showMessaging() {
-    Zendesk.getInstance().getMessaging().showMessaging(this.reactContext.getCurrentActivity());
+    Zendesk.getInstance().getMessaging().showMessaging(Objects.requireNonNull(this.reactContext.getCurrentActivity()));
   }
 
   @ReactMethod
