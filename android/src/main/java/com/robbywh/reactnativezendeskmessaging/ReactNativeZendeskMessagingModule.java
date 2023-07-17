@@ -59,7 +59,7 @@ public class ReactNativeZendeskMessagingModule extends ReactContextBaseJavaModul
         this.reactContext,
         channelKey,
         zendesk -> {
-          zendesk.addEventListener(zendeskEventListener);
+//          zendesk.addEventListener(zendeskEventListener);
           isInitialized = true;
           promise.resolve("success");
         },
