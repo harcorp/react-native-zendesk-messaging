@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@robbywh/react-native-zendesk-messaging": ["./src/index"]
+      "@harcorp/react-native-zendesk-messaging": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

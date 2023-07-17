@@ -6,7 +6,7 @@ import {
   showMessaging,
   loginUser,
   logoutUser,
-} from '@robbywh/react-native-zendesk-messaging';
+} from '@harcorp/react-native-zendesk-messaging';
 
 const App = () => {
   const [loadingInit, setLoadingInit] = React.useState(true);

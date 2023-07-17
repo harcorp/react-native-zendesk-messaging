@@ -23,7 +23,7 @@ import zendesk.messaging.android.push.PushNotifications;
 public class ReactNativeZendeskMessagingModule extends ReactContextBaseJavaModule {
   public static final String NAME = "ZendeskMessaging";
   private final ReactApplicationContext reactContext;
-  private Boolean isInitialized;
+  private Boolean isInitialized = false;
 
   public ReactNativeZendeskMessagingModule(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -52,7 +52,7 @@ public class ReactNativeZendeskMessagingModule extends ReactContextBaseJavaModul
 
   @ReactMethod
   public void initialize(String channelKey, Promise promise) {
-    if (!isInitialized) {
+    if (!this.isInitialized) {
       Zendesk.initialize(
         this.reactContext,
         channelKey,
