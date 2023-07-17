@@ -1,6 +1,6 @@
 {
   "name": "@harcorp/react-native-zendesk-messaging",
-  "version": "1.0.2",
+  "version": "1.5.0",
   "private": false,
   "description": "React Native Zendesk Messaging",
   "main": "lib/commonjs/index",
@@ -46,9 +46,9 @@
   "author": "David Rodriguez <chesternxp@gmail.com> (https://github.com/harcorp)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/RobbyWH/react-native-zendesk-messaging/issues"
+    "url": "https://github.com/harcorp/react-native-zendesk-messaging/issues"
   },
-  "homepage": "https://github.com/RobbyWH/react-native-zendesk-messaging#readme",
+  "homepage": "https://github.com/harcorp/react-native-zendesk-messaging#readme",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
