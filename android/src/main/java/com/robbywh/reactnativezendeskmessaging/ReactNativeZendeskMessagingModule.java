@@ -1,5 +1,7 @@
 package com.robbywh.reactnativezendeskmessaging;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.facebook.react.bridge.Promise;
@@ -59,11 +61,14 @@ public class ReactNativeZendeskMessagingModule extends ReactContextBaseJavaModul
         this.reactContext,
         channelKey,
         zendesk -> {
-//          zendesk.addEventListener(zendeskEventListener);
+          zendesk.addEventListener(zendeskEventListener);
           isInitialized = true;
           promise.resolve("success");
         },
-        error -> promise.reject(error),
+        error -> {
+          Log.e(ReactNativeZendeskMessagingModule.NAME, error.getLocalizedMessage());
+          promise.reject(error);
+        },
         new DefaultMessagingFactory());
     } else {
       promise.resolve("success");
