@@ -4,7 +4,7 @@ import React
 
 @objc(ZendeskMessaging)
 open class ZendeskMessaging: RCTEventEmitter {
-    
+
     public static var emitter: RCTEventEmitter!
     var isInitialized = false
 
@@ -12,11 +12,11 @@ open class ZendeskMessaging: RCTEventEmitter {
         super.init()
           ZendeskMessaging.emitter = self
       }
-    
+
     open override func supportedEvents() -> [String] {
         ["unreadMessageCountChanged", "authenticationFailed"]      // etc.
       }
-    
+
   @objc
     public override static func requiresMainQueueSetup() -> Bool {
     return true
@@ -41,6 +41,7 @@ open class ZendeskMessaging: RCTEventEmitter {
                       print("Domain: \(error.domain)")
                       print("Error code: \(error.code)")
                       print("Localized Description: \(error.localizedDescription)")
+
                       break
                   @unknown default:
                       break

@@ -1,7 +1,5 @@
 package com.robbywh.reactnativezendeskmessaging;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.facebook.react.bridge.Promise;
@@ -9,12 +7,15 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 
 import kotlin.Unit;
 import zendesk.android.FailureCallback;
 import zendesk.android.SuccessCallback;
 import zendesk.android.Zendesk;
 import zendesk.android.ZendeskUser;
+import zendesk.android.events.ZendeskEvent;
+import zendesk.android.events.ZendeskEventListener;
 import zendesk.messaging.android.DefaultMessagingFactory;
 import zendesk.messaging.android.push.PushNotifications;
 
@@ -22,11 +23,26 @@ import zendesk.messaging.android.push.PushNotifications;
 public class ReactNativeZendeskMessagingModule extends ReactContextBaseJavaModule {
   public static final String NAME = "ZendeskMessaging";
   private final ReactApplicationContext reactContext;
+  private Boolean isInitialized;
 
   public ReactNativeZendeskMessagingModule(ReactApplicationContext reactContext) {
     super(reactContext);
     this.reactContext = reactContext;
   }
+
+  ZendeskEventListener zendeskEventListener =
+    new ZendeskEventListener() {
+      @Override
+      public void onEvent(@NonNull ZendeskEvent zendeskEvent) {
+        if (zendeskEvent instanceof ZendeskEvent.UnreadMessageCountChanged) {
+          reactContext
+            .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+            .emit("unreadMessageCountChanged", ((ZendeskEvent.UnreadMessageCountChanged) zendeskEvent).getCurrentUnreadCount());
+        } else if (zendeskEvent instanceof ZendeskEvent.AuthenticationFailed) {
+          // Your custom action...
+        }
+      }
+    };
 
   @Override
   @NonNull
@@ -36,12 +52,18 @@ public class ReactNativeZendeskMessagingModule extends ReactContextBaseJavaModul
 
   @ReactMethod
   public void initialize(String channelKey, Promise promise) {
-    Zendesk.initialize(
-      this.reactContext,
-      channelKey,
-      zendesk -> promise.resolve("success"),
-      error -> promise.reject(error),
-      new DefaultMessagingFactory());
+    if (!isInitialized) {
+      Zendesk.initialize(
+        this.reactContext,
+        channelKey,
+        zendesk -> {
+          zendesk.addEventListener(zendeskEventListener);
+          isInitialized = true;
+          promise.resolve("success");
+        },
+        error -> promise.reject(error),
+        new DefaultMessagingFactory());
+    }
   }
 
   @ReactMethod
@@ -86,11 +108,11 @@ public class ReactNativeZendeskMessagingModule extends ReactContextBaseJavaModul
   }
 
   @ReactMethod
-  public void updatePushNotificationToken(String deviceToken,Promise promise) {
+  public void updatePushNotificationToken(String deviceToken, Promise promise) {
     try {
       PushNotifications.updatePushNotificationToken(deviceToken);
       promise.resolve("success");
-    } catch(Exception error){
+    } catch (Exception error) {
       promise.reject(error);
     }
   }
